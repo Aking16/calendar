@@ -49,7 +49,7 @@ function PersianCalendar() {
     const daysInMonthArray = [];
     for (let d = 1; d <= daysInMonth; d++) {
       daysInMonthArray.push(
-        <td key={d} className="day">{d}</td>
+        <td key={d}>{d}</td>
       );
     }
 
