@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import moment, { Moment } from "moment-jalaali";
 import { Button } from './ui/button';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 moment.loadPersian({
   usePersianDigits: true,
@@ -38,7 +39,7 @@ function PersianCalendar() {
 
   function renderCalendar() {
     const daysInMonth = moment.jDaysInMonth(selectedDate.jYear(), selectedDate.jMonth());
-    const firstDayOfMonth = (selectedDate.startOf('jMonth').day() + 1) % 7; 
+    const firstDayOfMonth = (selectedDate.startOf('jMonth').day() + 1) % 7;
     const blanks = [];
 
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -56,7 +57,7 @@ function PersianCalendar() {
     let rows: any[] = [];
     let cells: any[] = [];
 
-    totalSlots.forEach((row, i) => {
+    totalSlots.map((row, i) => {
       if (i % 7 !== 0) {
         cells.push(row);
       } else {
@@ -75,14 +76,16 @@ function PersianCalendar() {
   };
 
   return (
-    <div className="flex flex-col h-screen justify-center items-center">
-      <div className="flex gap-5">
-        <p>{months[selectedDate.jMonth()]}</p>
-        <p>{selectedDate.jYear()}</p>
-      </div>
-      <div className="flex gap-5">
-        <Button onClick={handlePrevMonth}>Previous Month</Button>
-        <Button onClick={handleNextMonth}>Next Month</Button>
+    <div className="w-full flex flex-col h-screen justify-center items-center">
+      <div className="flex justify-between">
+        <div className="flex gap-5">
+          <p>{months[selectedDate.jMonth()]}</p>
+          <p>{selectedDate.jYear()}</p>
+        </div>
+        <div className="flex gap-5">
+          <ChevronDown onClick={handlePrevMonth} />
+          <ChevronUp onClick={handleNextMonth} />
+        </div>
       </div>
       <table className="text-center border-separate border-spacing-x-5">
         <thead>
