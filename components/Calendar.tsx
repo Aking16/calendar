@@ -38,18 +38,17 @@ function PersianCalendar() {
 
   function renderCalendar() {
     const daysInMonth = moment.jDaysInMonth(selectedDate.jYear(), selectedDate.jMonth());
-    console.log((selectedDate.startOf('jMonth').day() + 1) % 7);
-    const firstDayOfMonth = (selectedDate.startOf('jMonth').day() + 1) % 7; // Start of the month
+    const firstDayOfMonth = (selectedDate.startOf('jMonth').day() + 1) % 7; 
     const blanks = [];
 
     for (let i = 0; i < firstDayOfMonth; i++) {
-      blanks.push(<td key={i}>  </td>);
+      blanks.push(<td>  </td>);
     }
 
     const daysInMonthArray = [];
-    for (let d = 1; d <= daysInMonth; d++) {
+    for (let day = 1; day <= daysInMonth; day++) {
       daysInMonthArray.push(
-        <td key={d}>{d}</td>
+        <td>{day.toLocaleString("fa-IR")}</td>
       );
     }
 
@@ -85,16 +84,16 @@ function PersianCalendar() {
         <Button onClick={handlePrevMonth}>Previous Month</Button>
         <Button onClick={handleNextMonth}>Next Month</Button>
       </div>
-      <table>
+      <table className="text-center border-separate border-spacing-x-5">
         <thead>
           <tr>
-            <th>شنبه</th>
-            <th>یک شنبه</th>
-            <th>دوشنبه</th>
-            <th>سه شنبه</th>
-            <th>چهار شنبه</th>
-            <th>پنچ شنبه</th>
-            <th>جمعه</th>
+            <th>ش</th>
+            <th>ی</th>
+            <th>د</th>
+            <th>س</th>
+            <th>چ</th>
+            <th>پ</th>
+            <th>ج</th>
           </tr>
         </thead>
         <tbody>{renderCalendar()}</tbody>
